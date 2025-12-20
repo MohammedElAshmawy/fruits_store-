@@ -1,0 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+class UnActivatedIcon extends StatelessWidget {
+  const UnActivatedIcon({super.key, required this.icon});
+
+  final String icon;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.transparent,
+      child: SvgPicture.asset(icon),
+    );
+  }
+}
+
+
+
