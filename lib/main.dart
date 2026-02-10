@@ -1,7 +1,8 @@
 import 'package:e_commerce/core/helper/bloc_observer.dart';
 import 'package:e_commerce/core/helper/go_route_function.dart';
-import 'package:e_commerce/core/services/service_locator.dart';
-import 'package:e_commerce/core/services/shared_pref_singletone.dart';
+import 'package:e_commerce/core/helper/service_locator.dart';
+import 'package:e_commerce/core/helper/shared_pref_singletone.dart';
+import 'package:e_commerce/core/services/supabase_init.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_View.dart';
 import 'package:e_commerce/firebase_options.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  await SupabaseInit.init();
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform);
   await Prefs.init();
@@ -33,7 +35,6 @@ class MyApp extends StatelessWidget {
         fontFamily: "Cairo",
       ),
       locale: Locale('ar'),
-      // أو Locale('en')
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: const [
         AppLocalizations.delegate,

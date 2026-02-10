@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/utils/text_Styles.dart';
+import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -16,8 +17,7 @@ void showSuccessDialog(BuildContext context) {
           mainAxisSize: MainAxisSize.min,
           children: [
             Lottie.network(
-              "https://assets2.lottiefiles.com/packages/lf20_jbrw3hcz.json"
-              ,
+              "https://assets2.lottiefiles.com/packages/lf20_jbrw3hcz.json",
               width: 240,
               height: 120,
               repeat: false,
@@ -34,8 +34,6 @@ void showSuccessDialog(BuildContext context) {
             const SizedBox(height: 12),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, HomeView.routeName);
-                // يقفل الـ Dialog
               },
               child:  Text('تم',
               style: TextStyles.semiBold16,

@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
-  LoginCubit(this.authRepo) : super(LoginInitial());
+  LoginCubit(this.authRepo, this.authRepoSupabase) : super(LoginInitial());
 
   final AuthRepo authRepo;
+  final AuthRepoSupabase authRepoSupabase;
   static LoginCubit get(context)=>BlocProvider.of(context);
 
   Future <void> loginWithEmailAndPassword(String email,String password)async{
@@ -21,6 +22,20 @@ class LoginCubit extends Cubit<LoginStates> {
         }
     );
   }
+
+  Future<void> signInWithSupabase(String email,String password)async{
+    emit(LoginLoadingState());
+    final result=await authRepoSupabase.signInWithSupabase(email, password);
+    result.fold(
+            (failure)=>
+            emit(LoginErrorState(message: failure.message)),
+            (userEntity){
+          emit(LoginSuccessState(userEntity: userEntity));
+        }
+    );
+  }
+
+
 
   Future<void> signInWithGoogle()async{
     emit(LoginLoadingState());

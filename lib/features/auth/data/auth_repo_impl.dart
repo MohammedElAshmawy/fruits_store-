@@ -5,7 +5,7 @@ import 'package:e_commerce/core/errors/exceptions.dart';
 import 'package:e_commerce/core/errors/failures.dart';
 import 'package:e_commerce/core/services/database_service.dart';
 import 'package:e_commerce/core/services/firebase_auth_service.dart';
-import 'package:e_commerce/core/services/shared_pref_singletone.dart';
+import 'package:e_commerce/core/helper/shared_pref_singletone.dart';
 import 'package:e_commerce/core/utils/constants.dart';
 import 'package:e_commerce/core/utils/endpoints.dart';
 import 'package:e_commerce/features/auth/data/user_model.dart';
@@ -59,7 +59,6 @@ class AuthRepoImpl extends AuthRepo {
 
       var userEntity = await getUserData(uid: user.uid);
       await saveUserData(user: userEntity);
-
       return Right(userEntity);
     } on CustomException catch (e) {
       log("Exception in AuthRepoImpl and error is ${e.toString()}");
@@ -116,3 +115,4 @@ class AuthRepoImpl extends AuthRepo {
     await Prefs.setString(KUserData, jsonData);
   }
 }
+

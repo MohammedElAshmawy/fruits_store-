@@ -17,3 +17,8 @@ abstract class AuthRepo {
   Future <UserEntity> getUserData({required String uid});
 
 }
+
+abstract class AuthRepoSupabase{
+  Future<Either<Failure,UserEntity>> signupWithSupabase(String name ,String email,String password);
+  Future<Either<Failure,UserEntity>> signInWithSupabase(String email,String password);
+}

@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/helper/get_user.dart';
+import 'package:e_commerce/core/services/supabase_init.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/core/utils/strings.dart';
 import 'package:e_commerce/core/utils/text_Styles.dart';
@@ -11,29 +12,29 @@ class CustomHomeAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final supabase=SupabaseInit.client;
+     final user=supabase.auth.currentUser!.userMetadata?['name']??"ميدو";
     return Row(
       children: [
         Image.asset("assets/images/profile_image.png"),
-        SizedBox(width: 6,),
+        SizedBox(width: 6),
         Column(
           children: [
-            Text(AppStrings.goodMorningText,
-                style: TextStyles.regular16.copyWith(
-                    color:AppColors.hintTextFormFieldColor,
-                    fontWeight: FontWeight.w400
-                )),
-            Text(getUser().name,
+            Text(
+              AppStrings.goodMorningText,
               style: TextStyles.regular16.copyWith(
-                  color:AppColors.black
+                color: AppColors.hintTextFormFieldColor,
+                fontWeight: FontWeight.w400,
               ),
-            )
+            ),
+            Text(
+              user,
+              style: TextStyles.regular16.copyWith(color: AppColors.black),
+            ),
           ],
         ),
         Spacer(),
-        SvgPicture.asset(AppAssets().notificationIcon,
-          width: 34,
-          height: 34,
-        )
+        SvgPicture.asset(AppAssets().notificationIcon, width: 34, height: 34),
       ],
     );
   }

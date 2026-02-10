@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/services/shared_pref_singletone.dart';
+import 'package:e_commerce/core/helper/shared_pref_singletone.dart';
 import 'package:e_commerce/core/utils/constants.dart';
 import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce/features/home/presentation/views/home_view.dart';

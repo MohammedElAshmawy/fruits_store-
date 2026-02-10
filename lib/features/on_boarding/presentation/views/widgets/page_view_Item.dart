@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/services/shared_pref_singletone.dart';
+import 'package:e_commerce/core/helper/shared_pref_singletone.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/core/utils/constants.dart';
 import 'package:e_commerce/core/utils/strings.dart';

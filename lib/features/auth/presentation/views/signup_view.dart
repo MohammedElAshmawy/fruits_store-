@@ -1,8 +1,9 @@
 import 'package:e_commerce/core/helper/show_custom_dialog.dart';
-import 'package:e_commerce/core/services/service_locator.dart';
+import 'package:e_commerce/core/helper/service_locator.dart';
 import 'package:e_commerce/core/widgets/show_snakbar_error.dart';
 import 'package:e_commerce/features/auth/domain/auth_repo.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
+import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce/features/auth/presentation/views/widgets/signup_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,7 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupCubit(getIt<AuthRepo>()),
+      create: (context) => SignupCubit(getIt<AuthRepo>(),getIt<AuthRepoSupabase>()),
       child: Scaffold(body: signupViewBodyBlocConsumer()),
     );
   }
@@ -25,7 +26,7 @@ class SignUpView extends StatelessWidget {
     return BlocConsumer<SignupCubit, SignupStates>(
       listener: (context, state) {
         if (state is SignupSuccess) {
-          showSuccessDialog(context);
+          Navigator.pushReplacementNamed(context, LoginView.routeName);
         }
         if (state is SignupError) {
           showSnackBarError(context,state.message);

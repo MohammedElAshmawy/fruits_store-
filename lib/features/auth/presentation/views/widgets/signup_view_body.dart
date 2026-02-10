@@ -74,12 +74,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                       formKey.currentState!.save();
                       if (isTermsAccepted) {
                         context
-                            .read<SignupCubit>()
-                            .createUserWithEmailAndPassword(
-                              name,
-                              email,
-                              password,
-                            );
+                            .read<SignupCubit>().signupWithSupabase(
+                            name,
+                            email,
+                            password);
                       } else {
                         showSnackBarError(
                           context,

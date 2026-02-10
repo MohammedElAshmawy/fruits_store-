@@ -72,7 +72,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     onPressed: () {
                       if(formKey.currentState!.validate()){
                         formKey.currentState!.save();
-                        LoginCubit.get(context).loginWithEmailAndPassword(email, password);
+                        LoginCubit.get(context).signInWithSupabase(email, password);
                       }
                     },
                     text: AppStrings.login),
