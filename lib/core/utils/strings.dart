@@ -41,4 +41,6 @@ abstract class AppStrings {
   static const String kiloText = "الكيلو";
   static const String poundText = "جنيه";
 
+  static const String errorImageText = "Failed to load product image";
+
 }

@@ -15,16 +15,16 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final TextInputType textInputType;
   final Widget? suffixIcon;
-
   final TextEditingController? textEditingController;
   final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: TextInputAction.next,
       onSaved: onSaved,
       validator: (value) {
-        if (value!.isEmpty || value.length < 4) {
+        if (value!.isEmpty ) {
           return "حدث خطأ ما؛ من فضلك حاول مره اخري";
         }
         return null;
@@ -79,6 +79,7 @@ class _CustomTextFormFieldForPasswordState
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: TextInputAction.next,
       obscureText: isObscure,
       onSaved: widget.onSaved,
       validator: (value) {

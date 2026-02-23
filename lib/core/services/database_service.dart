@@ -9,6 +9,7 @@ abstract class DatabaseService {
   Future<dynamic> getData({
     required String path,
      String? documentUid,
+    Map<String,dynamic>? query
   });
 
   Future<bool> checkUserExist({required String path,required String documentId});

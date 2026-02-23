@@ -1,7 +1,7 @@
 import 'package:e_commerce/core/helper/shared_pref_singletone.dart';
 import 'package:e_commerce/core/utils/constants.dart';
 import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
-import 'package:e_commerce/features/home/presentation/views/home_view.dart';
+import 'package:e_commerce/features/home/presentation/views/main_view.dart';
 import 'package:e_commerce/features/on_boarding/presentation/views/on_boarding_view.dart' show OnBoardingView;
 import 'package:e_commerce/gen/assets.gen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,7 +51,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     if (isOnboardingSeen == true) {
       var user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        Navigator.pushReplacementNamed(context, HomeView.routeName);
+        Navigator.pushReplacementNamed(context, MainView.routeName);
       } else {
         Navigator.pushReplacementNamed(context, LoginView.routeName);
       }

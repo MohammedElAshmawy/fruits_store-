@@ -1,6 +1,6 @@
 import 'package:e_commerce/core/utils/text_Styles.dart';
 import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
-import 'package:e_commerce/features/home/presentation/views/home_view.dart';
+import 'package:e_commerce/features/home/presentation/views/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

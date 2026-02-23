@@ -28,7 +28,7 @@ class CustomHomeAppbar extends StatelessWidget {
               ),
             ),
             Text(
-              user,
+              user??"Ashmawy",
               style: TextStyles.regular16.copyWith(color: AppColors.black),
             ),
           ],

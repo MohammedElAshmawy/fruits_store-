@@ -38,7 +38,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         children: bottomNavBarItems.asMap().entries.map((e) {
           var index = e.key;
           var entity = e.value;
-
           return Expanded(
             flex: index == selectedIndex ? 3 : 2,
             child: GestureDetector(
