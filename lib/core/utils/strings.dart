@@ -39,7 +39,10 @@ abstract class AppStrings {
   static const String bestSellerText = "الأكثر مبيعًا";
   static const String moreText = "المزيد";
   static const String kiloText = "الكيلو";
+  static const String resultsText = "النتائج";
   static const String poundText = "جنيه";
+  static const String productsText = "المنتجات";
+  static const String basket = "السله";
 
   static const String errorImageText = "Failed to load product image";
 

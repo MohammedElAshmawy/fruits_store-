@@ -1,15 +1,18 @@
-import 'package:e_commerce/features/home/domain/entities/nav_bar_entities.dart';
-import 'package:e_commerce/features/home/presentation/views/widgets/nav_bar_item.dart';
 import 'package:flutter/material.dart';
+import '../../../domain/entities/nav_bar_entities.dart';
+import 'nav_bar_item.dart';
 
-class CustomBottomNavBar extends StatefulWidget {
-  const CustomBottomNavBar({super.key});
+class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({super.key, required this.onItemTapped});
+
+  final ValueChanged<int> onItemTapped;
 
   @override
-  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int selectedIndex = 0;
 
   @override
@@ -38,12 +41,14 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         children: bottomNavBarItems.asMap().entries.map((e) {
           var index = e.key;
           var entity = e.value;
+
           return Expanded(
             flex: index == selectedIndex ? 3 : 2,
             child: GestureDetector(
               onTap: () {
                 setState(() {
                   selectedIndex = index;
+                  widget.onItemTapped(index);
                 });
               },
               child: NavigationBarItem(

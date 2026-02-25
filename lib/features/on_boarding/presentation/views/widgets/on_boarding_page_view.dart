@@ -16,8 +16,8 @@ class OnBoardingPageView extends StatelessWidget {
       controller: pageController,
       children: [
         PageViewItem(
-          image: AppAssets().onBoard1Image,
-          backgroundImage: AppAssets().onBoard1BackgroundImage,
+          image: Assets.images.onBoard1Image,
+          backgroundImage: Assets.images.onBoard1BackgroundImage,
           subTitle: AppStrings.subTitleBoarding1,
           title:
           Row(
@@ -44,8 +44,8 @@ class OnBoardingPageView extends StatelessWidget {
           isVisible:true,
         ),
         PageViewItem(
-          image: AppAssets().onBoard2Image,
-          backgroundImage: AppAssets().onBoard2BackgroundImage,
+          image: Assets.images.onBoard2Image,
+          backgroundImage: Assets.images.onBoard2BackgroundImage,
           subTitle: AppStrings.subTitleBoarding2,
           title: Text(AppStrings.titleBoarding2,
           style: TextStyles.bold23,

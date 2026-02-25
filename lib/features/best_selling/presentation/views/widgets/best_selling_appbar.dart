@@ -17,7 +17,7 @@ AppBar buildBestSellingAppBar() {
     actions: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: SvgPicture.asset(AppAssets().notificationIcon,
+        child: SvgPicture.asset(Assets.images.notificationIcon,
           width: 34,
           height: 34,
         ),

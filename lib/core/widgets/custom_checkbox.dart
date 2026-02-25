@@ -33,7 +33,7 @@ class CustomCheckbox extends StatelessWidget {
           duration: Duration(milliseconds: 300),
           child:isChecked? Padding(
             padding: const EdgeInsets.all(4.0),
-            child: SvgPicture.asset(AppAssets().checked),
+            child: SvgPicture.asset(Assets.images.checked),
           ):SizedBox(),
       ),
     );

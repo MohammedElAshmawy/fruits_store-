@@ -1,32 +1,35 @@
 import 'package:e_commerce/gen/assets.gen.dart';
 
-class NavBarEntities  {
-
-  final String activatedIcon,unActivatedIcon;
+class NavBarEntities {
+  final String activatedIcon, unActivatedIcon;
   final String name;
 
   const NavBarEntities({
     required this.activatedIcon,
     required this.unActivatedIcon,
-    required this.name});
-
+    required this.name,
+  });
 }
 
 List<NavBarEntities> get bottomNavBarItems => [
   NavBarEntities(
-      activatedIcon: AppAssets().homeActivatedIcon,
-      unActivatedIcon: AppAssets().homeUnActivatedIcon,
-      name: 'الرئيسية'),
+    activatedIcon: Assets.activatedIcons.home,
+    unActivatedIcon: Assets.unactivatedIcons.homeUnactivated,
+    name: 'الرئيسية',
+  ),
   NavBarEntities(
-      activatedIcon: AppAssets().productsActivatedIcon,
-      unActivatedIcon: AppAssets().productsUnActivatedIcon,
-      name: 'المنتجات'),
+    activatedIcon: Assets.activatedIcons.products,
+    unActivatedIcon: Assets.unactivatedIcons.productsUnactivated,
+    name: 'المنتجات',
+  ),
   NavBarEntities(
-      activatedIcon: AppAssets().basketActivatedIcon,
-      unActivatedIcon: AppAssets().basketUnActivatedIcon,
-      name: 'سلة التسوق'),
+    activatedIcon: Assets.activatedIcons.basket,
+    unActivatedIcon: Assets.unactivatedIcons.basketUnactivated,
+    name: 'سلة التسوق',
+  ),
   NavBarEntities(
-      activatedIcon: AppAssets().myAccountActivatedIcon,
-      unActivatedIcon: AppAssets().myAccountUnActivatedIcon,
-      name: 'حسابي'),
+    activatedIcon: Assets.activatedIcons.myAccount,
+    unActivatedIcon: Assets.unactivatedIcons.myAccountUnactivated,
+    name: 'حسابي',
+  ),
 ];

@@ -26,10 +26,10 @@ class SearchTextField extends StatelessWidget {
         decoration: InputDecoration(
             prefixIcon: SizedBox(
                 width: 20,
-                child: Center(child: SvgPicture.asset(AppAssets().searchIcon))),
+                child: Center(child: SvgPicture.asset(Assets.images.search))),
             suffixIcon: SizedBox(
                 width:20,
-                child: Center(child: SvgPicture.asset(AppAssets().filterIcon))),
+                child: Center(child: SvgPicture.asset(Assets.images.filter))),
             hintText: AppStrings.searchHintText,
             hintStyle: TextStyles.regular13.copyWith(
                 color: AppColors.hintTextFormFieldColor,

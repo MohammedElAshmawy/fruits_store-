@@ -34,11 +34,11 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(AppAssets().splash),
+              SvgPicture.asset(Assets.images.splash),
             ],
           ),
-          SvgPicture.asset(AppAssets().logo),
-          SvgPicture.asset(AppAssets().bottomSplash,fit: BoxFit.fill,),
+          SvgPicture.asset(Assets.images.logo),
+          SvgPicture.asset(Assets.images.bottomSplash,fit: BoxFit.fill,),
         ],
       ),
     );

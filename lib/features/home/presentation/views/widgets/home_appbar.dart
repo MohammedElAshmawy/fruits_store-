@@ -34,7 +34,7 @@ class CustomHomeAppbar extends StatelessWidget {
           ],
         ),
         Spacer(),
-        SvgPicture.asset(AppAssets().notificationIcon, width: 34, height: 34),
+        SvgPicture.asset(Assets.images.notificationIcon, width: 34, height: 34),
       ],
     );
   }

@@ -88,19 +88,19 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 SizedBox(height: 40),
                 SocialButton(
                     title: AppStrings.signInWithGoogle,
-                    icon: SvgPicture.asset(AppAssets().googleIcon),
+                    icon: SvgPicture.asset(Assets.images.googleIcon),
                     onPressed: (){
                       LoginCubit.get(context).signInWithGoogle();
                     }),
                 SizedBox(height: 24),
                 SocialButton(
                     title: AppStrings.signInWithApple,
-                    icon: SvgPicture.asset(AppAssets().appleIcon),
+                    icon: SvgPicture.asset(Assets.images.appleIcon),
                     onPressed: (){}),
                 SizedBox(height: 24),
                 SocialButton(
                     title: AppStrings.signInWithFacebook,
-                    icon: SvgPicture.asset(AppAssets().facebookIcon),
+                    icon: SvgPicture.asset(Assets.images.facebookIcon),
                     onPressed: (){}),
               ],
             ),
