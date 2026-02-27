@@ -1,7 +1,8 @@
+import 'package:e_commerce/features/home/presentation/views/widgets/cart_header.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/strings.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
+import 'cart_items_list.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -19,9 +20,12 @@ class CartViewBody extends StatelessWidget {
                   SizedBox(height: 8),
                   customAppbar(title: AppStrings.basket),
                   SizedBox(height: 12),
+                  CartHeader(),
+                  SizedBox(height: 12),
                 ],
               ),
             ),
+            CartItemsList(),
           ],
         ),
       ),

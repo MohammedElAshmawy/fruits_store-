@@ -89,6 +89,8 @@ class $AssetsImagesGen {
   /// File path: assets/images/splash.svg
   String get splash => 'assets/images/splash.svg';
 
+  String get trash => 'assets/images/trash.svg';
+
   /// File path: assets/images/watermelon_test.png
   AssetGenImage get watermelonTest =>
       const AssetGenImage('assets/images/watermelon_test.png');
@@ -114,6 +116,7 @@ class $AssetsImagesGen {
     search,
     splash,
     watermelonTest,
+    trash,
   ];
 }
 
