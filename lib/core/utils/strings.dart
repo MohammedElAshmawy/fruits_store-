@@ -45,5 +45,6 @@ abstract class AppStrings {
   static const String basket = "السله";
 
   static const String errorImageText = "Failed to load product image";
+  static const String operationDone = "تمت العملية بنجاح";
 
 }

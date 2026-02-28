@@ -29,7 +29,7 @@ class SignUpView extends StatelessWidget {
           Navigator.pushReplacementNamed(context, LoginView.routeName);
         }
         if (state is SignupError) {
-          showSnackBarError(context,state.message);
+          showSnackBar(context,state.message);
         }
       },
       builder: (context, state) {

@@ -28,7 +28,7 @@ class LoginView extends StatelessWidget {
             Navigator.pushNamed(context, MainView.routeName);
           }
           if (state is LoginErrorState) {
-            showSnackBarError(context,state.message);
+            showSnackBar(context,state.message);
           }
         },
         builder: (context,state){

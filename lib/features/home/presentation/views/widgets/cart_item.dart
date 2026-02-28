@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/utils/constants.dart';
+import 'package:e_commerce/features/home/domain/entities/cart_item_entities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../core/utils/colors.dart';
@@ -8,7 +8,9 @@ import '../../../../../gen/assets.gen.dart';
 import 'cart_item_actions_button.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  const CartItem({super.key, required this.cartItemEntities});
+
+  final CartItemEntity cartItemEntities;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class CartItem extends StatelessWidget {
             width: 73,
             height: 92,
             decoration: const BoxDecoration(color: Color(0xFFF3F5F7)),
-            child: CustomNetworkImage(imageUrl: "https://picsum.photos/200/300"),
+            child: CustomNetworkImage(
+                imageUrl: cartItemEntities.productEntity.imageUrl!),
           ),
           const SizedBox(width: 17),
           Expanded(
@@ -29,7 +32,7 @@ class CartItem extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text("بطيخ", style: TextStyles.bold13),
+                    Text(cartItemEntities.productEntity.name, style: TextStyles.bold13),
                     const Spacer(),
                     GestureDetector(
                       onTap: () {},
@@ -38,7 +41,7 @@ class CartItem extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  '3 كم',
+                  '${cartItemEntities.quantity} كم',
                   textAlign: TextAlign.right,
                   style: TextStyles.regular13.copyWith(
                     color: AppColors.secondaryColor,
@@ -49,7 +52,7 @@ class CartItem extends StatelessWidget {
                     CartItemActionButtons(),
                     const Spacer(),
                     Text(
-                      '30 جنيه',
+                      '${cartItemEntities.productEntity.price} جنيه',
                       style: TextStyles.bold16.copyWith(
                         color: AppColors.secondaryColor,
                       ),

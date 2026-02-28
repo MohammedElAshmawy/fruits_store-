@@ -79,7 +79,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             email,
                             password);
                       } else {
-                        showSnackBarError(
+                        showSnackBar(
                           context,
                           AppStrings.youShouldAcceptTerms,
                         );

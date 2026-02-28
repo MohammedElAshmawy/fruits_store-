@@ -4,6 +4,8 @@ import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/core/utils/strings.dart';
 import 'package:e_commerce/core/utils/text_Styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/home/presentation/cubits/cart_cubit.dart';
 import 'custom_network_image.dart';
 
 class GeneralItem extends StatelessWidget {
@@ -83,11 +85,15 @@ class GeneralItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-
                         Spacer(),
-                        CircleAvatar(
-                          backgroundColor: AppColors.primaryColor,
-                          child: Icon(Icons.add, color: AppColors.whiteColor),
+                        GestureDetector(
+                          onTap: (){
+                            context.read<CartCubit>().addProduct(productEntity);
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: AppColors.primaryColor,
+                            child: Icon(Icons.add, color: AppColors.whiteColor),
+                          ),
                         ),
                       ],
                     ),
