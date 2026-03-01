@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/home/presentation/cubits/cart_cubit.dart';
+import 'package:e_commerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/features/home/presentation/views/widgets/custom_bottom_nav_bar.dart';
 import 'package:e_commerce/features/home/presentation/views/widgets/main_view_body_bloc_listener.dart';
 import 'package:flutter/material.dart';

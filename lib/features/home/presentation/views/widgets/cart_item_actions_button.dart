@@ -1,10 +1,14 @@
+import 'package:e_commerce/features/home/domain/entities/cart_item_entities.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/text_Styles.dart';
+import '../../cubits/cart_item_cubit/cart_item_cubit.dart';
 
 class CartItemActionButtons extends StatelessWidget {
-  const CartItemActionButtons({super.key});
+  const CartItemActionButtons({super.key, required this.cartItemEntity});
 
+  final CartItemEntity cartItemEntity;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,12 +17,15 @@ class CartItemActionButtons extends StatelessWidget {
           iconColor: Colors.white,
           icon: Icons.add,
           color: AppColors.primaryColor,
-          onPressed: () {},
+          onPressed: () {
+            cartItemEntity.increaseCount();
+            context.read<CartItemCubit>().updateCartItem(cartItemEntity);
+          },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            "3",
+            cartItemEntity.quantity.toString(),
             textAlign: TextAlign.center,
             style: TextStyles.bold16,
           ),
@@ -27,7 +34,10 @@ class CartItemActionButtons extends StatelessWidget {
           iconColor: Colors.grey,
           icon: Icons.remove,
           color: const Color(0xFFF3F5F7),
-          onPressed: () {},
+          onPressed: () {
+            cartItemEntity.decreaseCount();
+            context.read<CartItemCubit>().updateCartItem(cartItemEntity);
+          },
         ),
       ],
     );

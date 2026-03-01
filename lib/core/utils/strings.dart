@@ -46,5 +46,6 @@ abstract class AppStrings {
 
   static const String errorImageText = "Failed to load product image";
   static const String operationDone = "تمت العملية بنجاح";
+  static const String deleteDone = "تمت حذف العنصر بنجاح";
 
 }

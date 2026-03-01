@@ -1,9 +1,11 @@
-import 'package:e_commerce/core/widgets/custom_button.dart';
+import 'package:e_commerce/features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/features/home/presentation/views/widgets/cart_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/strings.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
 import 'cart_items_list.dart';
+import 'custom_cart_button_bloc_builder.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -28,10 +30,13 @@ class CartViewBody extends StatelessWidget {
                     ],
                   ),
                 ),
-                 CartItemsList(cartItemEntities: []),
-                const SliverToBoxAdapter(
-                  child: SizedBox(height: 80),
+                CartItemsList(
+                  cartItemEntities: context
+                      .watch<CartCubit>()
+                      .cartEntity
+                      .cartItems,
                 ),
+                const SliverToBoxAdapter(child: SizedBox(height: 80)),
               ],
             ),
           ),
@@ -40,10 +45,7 @@ class CartViewBody extends StatelessWidget {
           left: 16,
           right: 16,
           bottom: 16,
-          child: CustomButton(
-            onPressed: () {},
-            text: "الدفع 120 جنيه",
-          ),
+          child: CustomCartButtonBlocBuilder(),
         ),
       ],
     );

@@ -5,7 +5,7 @@ import 'package:e_commerce/core/utils/strings.dart';
 import 'package:e_commerce/core/utils/text_Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../features/home/presentation/cubits/cart_cubit.dart';
+import '../../features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'custom_network_image.dart';
 
 class GeneralItem extends StatelessWidget {
