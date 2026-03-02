@@ -15,7 +15,7 @@ class StepItemList extends StatelessWidget {
           child: StepItem(
               stepName: getStepName()[index],
               index: (index + 1).toString(),
-              isActive: false),
+              isActive: true),
         ),
       ),
     );

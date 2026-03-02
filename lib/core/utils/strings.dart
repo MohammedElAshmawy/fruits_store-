@@ -52,6 +52,14 @@ abstract class AppStrings {
   static const String address = "العنوان";
   static const String payment = "الدفع";
   static const String revision = "المراجعة";
+  static const String next = "التالي";
+
+  static const String payWhenReceive = "الدفع عند الاستلام";
+  static const String receiveInPlace = "التسليم من المكان";
+  static const String defineWayPay = "يرجي تحديد طريقه الدفع";
+  static const String payWithDebit = "ادفع عن طريق الفيزا";
+
+
 
 
 }
