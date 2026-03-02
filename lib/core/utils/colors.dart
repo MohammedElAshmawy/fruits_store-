@@ -13,7 +13,8 @@ abstract class AppColors{
   static const Color fillFormFieldColor=Color(0xffF9FAFA);
   static const Color hintTextFormFieldColor=Color(0xff949D9E);
   static const Color borderContainerColor=Color(0xffDDDFDF);
-  static const Color transperentColor=Color(0x00000000);
+  static const Color transperantColor=Color(0x00000000);
   static const Color black=Color(0xff0C0D0D);
+  static const Color lightGrey=Color(0xffAAAAAA);
 
 }

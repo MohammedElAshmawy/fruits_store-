@@ -48,4 +48,10 @@ abstract class AppStrings {
   static const String operationDone = "تمت العملية بنجاح";
   static const String deleteDone = "تمت حذف العنصر بنجاح";
 
+  static const String shipping = "الشحن";
+  static const String address = "العنوان";
+  static const String payment = "الدفع";
+  static const String revision = "المراجعة";
+
+
 }
