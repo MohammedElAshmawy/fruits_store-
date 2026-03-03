@@ -26,7 +26,6 @@ class StepItemList extends StatelessWidget {
       AppStrings.shipping,
       AppStrings.address,
       AppStrings.payment,
-      AppStrings.revision,
     ];
   }
 }
