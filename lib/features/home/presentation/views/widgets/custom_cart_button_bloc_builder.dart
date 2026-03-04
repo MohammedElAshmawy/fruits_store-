@@ -1,3 +1,5 @@
+import 'package:e_commerce/core/utils/strings.dart';
+import 'package:e_commerce/core/widgets/show_snakbar_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_button.dart';
@@ -12,9 +14,9 @@ class CustomCartButtonBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartItemCubit,CartItemState>(
+    return BlocBuilder<CartItemCubit, CartItemState>(
       buildWhen: (previous, current) {
-        if(current is CartItemUpdated){
+        if (current is CartItemUpdated) {
           return true;
         }
         return false;
@@ -22,10 +24,16 @@ class CustomCartButtonBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         return CustomButton(
           onPressed: () {
-            Navigator.pushNamed(context, CheckoutView.routeName);
+            if (context.read<CartCubit>().cartEntity.cartItems.isNotEmpty) {
+              Navigator.pushNamed(context, CheckoutView.routeName,
+              arguments: context.read<CartCubit>().cartEntity
+              );
+            } else {
+              showSnackBar(context, AppStrings.cartIsEmpty);
+            }
           },
           text:
-          "الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()}  جنيه",
+              "الدفع ${context.watch<CartCubit>().cartEntity.calculateTotalPrice()}  جنيه",
         );
       },
     );

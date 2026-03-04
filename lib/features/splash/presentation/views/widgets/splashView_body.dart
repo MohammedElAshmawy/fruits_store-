@@ -4,9 +4,9 @@ import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
 import 'package:e_commerce/features/home/presentation/views/main_view.dart';
 import 'package:e_commerce/features/on_boarding/presentation/views/on_boarding_view.dart' show OnBoardingView;
 import 'package:e_commerce/gen/assets.gen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -46,20 +46,18 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void executeNavigation() async {
     bool isOnboardingSeen = Prefs.getBool(KisOnboardingViewSeen);
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
-    if (isOnboardingSeen == true) {
-      var user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
+    if (isOnboardingSeen) {
+      var user = Supabase.instance.client.auth.currentUser;
+      bool hasMetadata = user?.userMetadata != null && user!.userMetadata!.isNotEmpty;
+      if (user != null && hasMetadata) {
         Navigator.pushReplacementNamed(context, MainView.routeName);
       } else {
         Navigator.pushReplacementNamed(context, LoginView.routeName);
       }
-    }
-    else {
+    } else {
       Navigator.pushReplacementNamed(context, OnBoardingView.routName);
     }
   }
 }
-
-

@@ -61,13 +61,15 @@ abstract class AppStrings {
   static const String receiveInPlace = "التسليم من المكان";
   static const String defineWayPay = "يرجي تحديد طريقه الدفع";
   static const String payWithDebit = "ادفع عن طريق الفيزا";
+  static const String cartIsEmpty = "السلة فارغة، يرجى إضافة منتجات أولاً";
 
   static const String orderSummary = "ملخص الطلب:";
   static const String delivery = "التوصيل:";
   static const String subTotal = "المجموع الفرعي:";
   static const String total = "الكلي";
 
-
+  static const String payWithPaypal = "الدفع عن طريق Paypal";
+  static const String chooseWayToPay = "يرجي اختيار طريقة دفع";
 
 
 }

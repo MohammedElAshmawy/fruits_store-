@@ -4,8 +4,6 @@ import 'package:e_commerce/core/helper/service_locator.dart';
 import 'package:e_commerce/core/helper/shared_pref_singletone.dart';
 import 'package:e_commerce/core/services/supabase_init.dart';
 import 'package:e_commerce/core/utils/colors.dart';
-import 'package:e_commerce/features/checkout/presentation/views/checkout_view.dart';
-import 'package:e_commerce/features/home/presentation/views/cart_view.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_View.dart';
 import 'package:e_commerce/firebase_options.dart';
 import 'package:e_commerce/l10n/app_localizations.dart';
@@ -45,7 +43,7 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: CheckoutView.routeName,
+      initialRoute: SplashView.routeName,
     );
   }
 }
