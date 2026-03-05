@@ -74,6 +74,7 @@ class OrderSummaryWidget extends StatelessWidget {
               )
             ],
           ),
+          const SizedBox(height: 16,),
         ],
       ),
     );

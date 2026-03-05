@@ -18,6 +18,10 @@ class CheckoutViewBody extends StatefulWidget {
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
 
+  ValueNotifier<AutovalidateMode> valueNotifier = ValueNotifier(AutovalidateMode.disabled);
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     pageController = PageController();
@@ -32,6 +36,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    valueNotifier.dispose();
     super.dispose();
   }
 
@@ -58,23 +63,20 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           const SizedBox(height: 32),
           Expanded(
             child: CheckoutStepsPageView(
+              valueListenable: valueNotifier,
+              formKey: formKey,
               pageController: pageController,
             ),
           ),
           const SizedBox(height: 16),
           CustomButton(
             onPressed: () {
-              if (context.read<OrderAddressEntity>().payCash == null) {
-                showSnackBar(context, AppStrings.chooseWayToPay);
-                return;
-              }
-              if (currentPage < 2) {
-                pageController.nextPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
+              if (currentPage == 0) {
+                handleShippingSectionNavigation(context);
+              } else if (currentPage == 1) {
+                handleAddressNavigation();
               } else {
-                // Final step action
+                // Final Step: Payment Navigation Logic
               }
             },
             text: getButtonName(currentPage),
@@ -83,6 +85,30 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void handleAddressNavigation() {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      pageController.animateToPage(
+        currentPage + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }else{
+      valueNotifier.value=AutovalidateMode.always;
+    }
+  }
+
+  void handleShippingSectionNavigation(BuildContext context) {
+    if (context.read<OrderAddressEntity>().payCash == null) {
+      showSnackBar(context, AppStrings.chooseWayToPay);
+    } else {
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   String getButtonName(int currentPageIndex) {

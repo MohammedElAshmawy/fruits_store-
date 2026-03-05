@@ -70,6 +70,7 @@ abstract class AppStrings {
 
   static const String payWithPaypal = "الدفع عن طريق Paypal";
   static const String chooseWayToPay = "يرجي اختيار طريقة دفع";
+  static const String deliveryAddress = "عنوان التوصيل";
 
 
 }
