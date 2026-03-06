@@ -1,12 +1,12 @@
 import 'package:e_commerce/features/checkout/domain/entities/address_entity.dart';
 import 'package:e_commerce/features/home/domain/entities/cart_entity.dart';
 
-class OrderAddressEntity {
+class ShippingAddressEntity {
   final CartEntity cartEntity;
   bool? payCash;
   AddressEntity addressEntity=AddressEntity();
 
-  OrderAddressEntity({
+  ShippingAddressEntity({
     required this.cartEntity,
     this.payCash
   });

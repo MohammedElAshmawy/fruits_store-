@@ -5,7 +5,7 @@ import 'package:e_commerce/features/checkout/presentation/views/widgets/step_ite
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
-import '../../../domain/entities/order_address_entity.dart';
+import '../../../domain/entities/shipping_address_entity.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -101,7 +101,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   void handleShippingSectionNavigation(BuildContext context) {
-    if (context.read<OrderAddressEntity>().payCash == null) {
+    if (context.read<ShippingAddressEntity>().payCash == null) {
       showSnackBar(context, AppStrings.chooseWayToPay);
     } else {
       pageController.nextPage(

@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/utils/strings.dart';
-import 'package:e_commerce/features/checkout/domain/entities/order_address_entity.dart';
+import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:e_commerce/features/checkout/presentation/views/widgets/shipping_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,11 +23,11 @@ class _ShippingSectionState extends State<ShippingSection> with AutomaticKeepAli
           isSelected: selectedIndex == 1,
           title: AppStrings.payWhenReceive,
           subTitle: AppStrings.receiveInPlace,
-          price: context.read<OrderAddressEntity>().cartEntity.calculateTotalPrice().toString(),
+          price: context.read<ShippingAddressEntity>().cartEntity.calculateTotalPrice().toString(),
           onTap: () {
             selectedIndex = 1;
             setState(() {
-              context.read<OrderAddressEntity>().payCash = true;
+              context.read<ShippingAddressEntity>().payCash = true;
             });
           },
         ),
@@ -36,12 +36,12 @@ class _ShippingSectionState extends State<ShippingSection> with AutomaticKeepAli
           isSelected: selectedIndex == 2,
           title: AppStrings.payWithDebit,
           subTitle: AppStrings.defineWayPay,
-          price: (context.read<OrderAddressEntity>().cartEntity.calculateTotalPrice() + 20)
+          price: (context.read<ShippingAddressEntity>().cartEntity.calculateTotalPrice() + 20)
                   .toString(),
           onTap: () {
             selectedIndex = 2;
             setState(() {
-              context.read<OrderAddressEntity>().payCash = false;
+              context.read<ShippingAddressEntity>().payCash = false;
             });
           },
         ),

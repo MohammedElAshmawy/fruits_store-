@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/strings.dart';
 import '../../../../../core/utils/text_Styles.dart';
-import '../../../domain/entities/order_address_entity.dart';
+import '../../../domain/entities/shipping_address_entity.dart';
 
 class PaymentSection extends StatefulWidget {
   const PaymentSection({super.key});
@@ -20,9 +20,9 @@ class _PaymentSectionState extends State<PaymentSection> {
   void initState() {
     super.initState();
     addressController = TextEditingController(
-        text: "${context.read<OrderAddressEntity>().addressEntity.city}"
-            " ${context.read<OrderAddressEntity>().addressEntity.address}"
-            " ${context.read<OrderAddressEntity>().addressEntity.addressDetails}"
+        text: "${context.read<ShippingAddressEntity>().addressEntity.city}"
+            " ${context.read<ShippingAddressEntity>().addressEntity.address}"
+            " ${context.read<ShippingAddressEntity>().addressEntity.addressDetails}"
     );
   }
 

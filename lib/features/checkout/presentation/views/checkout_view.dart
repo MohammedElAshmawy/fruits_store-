@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/checkout/domain/entities/order_address_entity.dart';
+import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:e_commerce/features/checkout/presentation/views/widgets/checkout_view_body.dart';
 import 'package:e_commerce/features/home/domain/entities/cart_entity.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class CheckoutView extends StatelessWidget {
     return  Scaffold(
       body: SafeArea(
         child: Provider.value(
-            value: OrderAddressEntity(cartEntity: cartEntity),
+            value: ShippingAddressEntity(cartEntity: cartEntity),
             child: CheckoutViewBody()),
       ),
     );

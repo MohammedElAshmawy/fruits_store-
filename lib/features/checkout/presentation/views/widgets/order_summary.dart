@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/utils/strings.dart';
-import 'package:e_commerce/features/checkout/domain/entities/order_address_entity.dart';
+import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/text_Styles.dart';
@@ -26,7 +26,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "${context.read<OrderAddressEntity>().cartEntity.calculateTotalPrice().toString()} جنيه",
+                "${context.read<ShippingAddressEntity>().cartEntity.calculateTotalPrice().toString()} جنيه",
                 textAlign: TextAlign.right,
                 style: TextStyles.semiBold16,
               )
@@ -71,7 +71,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "${context.read<OrderAddressEntity>().cartEntity.calculateTotalPrice()+30} جنيه",
+                "${context.read<ShippingAddressEntity>().cartEntity.calculateTotalPrice()+30} جنيه",
                 style: TextStyles.bold16,
               )
             ],

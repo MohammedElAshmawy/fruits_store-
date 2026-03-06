@@ -1,5 +1,5 @@
 import 'package:e_commerce/core/utils/strings.dart';
-import 'package:e_commerce/features/checkout/domain/entities/order_address_entity.dart';
+import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +29,7 @@ class AddressSection extends StatelessWidget {
                 SizedBox(height: 20),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderAddressEntity>().addressEntity.fullName =
+                    context.read<ShippingAddressEntity>().addressEntity.fullName =
                         value!;
                   },
                   hintText: AppStrings.fullName,
@@ -38,7 +38,7 @@ class AddressSection extends StatelessWidget {
                 SizedBox(height: 10),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderAddressEntity>().addressEntity.email =
+                    context.read<ShippingAddressEntity>().addressEntity.email =
                         value!;
                   },
                   hintText: AppStrings.email,
@@ -47,7 +47,7 @@ class AddressSection extends StatelessWidget {
                 SizedBox(height: 10),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderAddressEntity>().addressEntity.address =
+                    context.read<ShippingAddressEntity>().addressEntity.address =
                         value!;
                   },
                   hintText: AppStrings.address,
@@ -56,7 +56,7 @@ class AddressSection extends StatelessWidget {
                 SizedBox(height: 10),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderAddressEntity>().addressEntity.city =
+                    context.read<ShippingAddressEntity>().addressEntity.city =
                         value!;
                   },
                   hintText: AppStrings.city,
@@ -65,7 +65,7 @@ class AddressSection extends StatelessWidget {
                 SizedBox(height: 10),
                 CustomTextFormField(
                   onSaved: (value) {
-                    context.read<OrderAddressEntity>().addressEntity.phone =
+                    context.read<ShippingAddressEntity>().addressEntity.phone =
                         value!;
                   },
                   hintText: AppStrings.phone,
@@ -75,7 +75,7 @@ class AddressSection extends StatelessWidget {
                 CustomTextFormField(
                   onSaved: (value) {
                     context
-                            .read<OrderAddressEntity>()
+                            .read<ShippingAddressEntity>()
                             .addressEntity
                             .addressDetails =
                         value!;
