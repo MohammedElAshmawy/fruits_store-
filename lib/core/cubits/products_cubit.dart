@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/core/entities/products_entity.dart';
-import 'package:e_commerce/core/repos/products_repo.dart';
+import 'package:e_commerce/core/repos/products_repo/products_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
