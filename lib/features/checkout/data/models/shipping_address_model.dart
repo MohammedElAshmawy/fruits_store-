@@ -1,4 +1,4 @@
-import '../../domain/entities/address_entity.dart';
+import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 
 class ShippingAddressModel {
   String? name;
@@ -17,14 +17,14 @@ class ShippingAddressModel {
     this.floor,
   });
 
-  factory ShippingAddressModel.fromEntity({required AddressEntity entity}) {
+  factory ShippingAddressModel.fromEntity(ShippingAddressEntity entity) {
     return ShippingAddressModel(
-      name: entity.fullName,
+      name: entity.name,
       phone: entity.phone,
       address: entity.address,
       city: entity.city,
       email: entity.email,
-      floor: entity.addressDetails,
+      floor: entity.floor,
     );
   }
 

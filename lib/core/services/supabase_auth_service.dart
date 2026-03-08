@@ -5,6 +5,10 @@ import '../errors/exceptions.dart';
 class SupabaseAuthService {
   final SupabaseClient client = Supabase.instance.client;
 
+  String getUserID() {
+    return client.auth.currentUser!.id;
+  }
+
   Future<AuthResponse> createUserWithEmailAndPassword({
     required String name,
     required String email,
@@ -67,4 +71,3 @@ class SupabaseAuthService {
     }
   }
 }
-

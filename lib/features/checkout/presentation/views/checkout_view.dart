@@ -1,5 +1,8 @@
 import 'package:e_commerce/core/helper/service_locator.dart';
 import 'package:e_commerce/core/repos/orders_repo/orders_repo.dart';
+import 'package:e_commerce/core/services/supabase_auth_service.dart';
+import 'package:e_commerce/core/widgets/add_order_bloc_consummer.dart';
+import 'package:e_commerce/features/checkout/domain/entities/order_input_entity.dart';
 import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:e_commerce/features/checkout/presentation/cubits/add_order_cubit.dart';
 import 'package:e_commerce/features/checkout/presentation/views/widgets/checkout_view_body.dart';
@@ -23,8 +26,15 @@ class CheckoutView extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: Provider.value(
-              value: ShippingAddressEntity(cartEntity: cartEntity),
-              child: CheckoutViewBody()),
+              value: OrderInputEntity(
+                  cartEntity,
+                  uID: getIt.get<SupabaseAuthService>().getUserID(),
+                  shippingAddressEntity: ShippingAddressEntity()
+              ),
+              child: const AddOrderBlocConsumer(
+              child: CheckoutViewBody())
+
+          ),
         ),
       ),
     );

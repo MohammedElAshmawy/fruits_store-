@@ -1,8 +1,8 @@
 import 'package:e_commerce/core/utils/strings.dart';
-import 'package:e_commerce/features/checkout/domain/entities/shipping_address_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/text_Styles.dart';
+import '../../../domain/entities/order_input_entity.dart';
 import 'payment_item.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "${context.read<ShippingAddressEntity>().cartEntity.calculateTotalPrice().toString()} جنيه",
+                "${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice().toString()} جنيه",
                 textAlign: TextAlign.right,
                 style: TextStyles.semiBold16,
               )
@@ -71,7 +71,9 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "${context.read<ShippingAddressEntity>().cartEntity.calculateTotalPrice()+30} جنيه",
+                context.read<OrderInputEntity>().payWithCash! ?
+                "${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()} جنيه":
+                "${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()+30}",
                 style: TextStyles.bold16,
               )
             ],

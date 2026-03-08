@@ -1,11 +1,12 @@
 import 'package:e_commerce/core/utils/strings.dart';
 import 'package:e_commerce/core/widgets/custom_button.dart';
 import 'package:e_commerce/core/widgets/show_snakbar_error.dart';
+import 'package:e_commerce/features/checkout/domain/entities/order_input_entity.dart';
+import 'package:e_commerce/features/checkout/presentation/cubits/add_order_cubit.dart';
 import 'package:e_commerce/features/checkout/presentation/views/widgets/step_item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
-import '../../../domain/entities/shipping_address_entity.dart';
 import 'checkout_steps_page_view.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -76,7 +77,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else if (currentPage == 1) {
                 handleAddressNavigation();
               } else {
-                // Final Step: Payment Navigation Logic
+               var orderEntity= context.read<OrderInputEntity>();
+                context.read<AddOrderCubit>().addOrder(entity: orderEntity);
               }
             },
             text: getButtonName(currentPage),
@@ -101,7 +103,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   void handleShippingSectionNavigation(BuildContext context) {
-    if (context.read<ShippingAddressEntity>().payCash == null) {
+    if (context.read<OrderInputEntity>().payWithCash == null) {
       showSnackBar(context, AppStrings.chooseWayToPay);
     } else {
       pageController.nextPage(

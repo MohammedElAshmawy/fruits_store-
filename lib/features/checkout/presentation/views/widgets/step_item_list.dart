@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/widgets/show_snakbar_error.dart';
-import '../../../domain/entities/shipping_address_entity.dart';
+import '../../../domain/entities/order_input_entity.dart';
 
 class StepItemList extends StatelessWidget {
   const StepItemList(
@@ -22,8 +22,10 @@ class StepItemList extends StatelessWidget {
         (index) => Expanded(
           child: GestureDetector(
             onTap: () {
-              if (context.read<ShippingAddressEntity>().payCash == null) {
-                showSnackBar(context, AppStrings.chooseWayToPay);
+              if (context.read<OrderInputEntity>().payWithCash == null) {
+                showSnackBar(
+                    isError: false,
+                    context, AppStrings.chooseWayToPay);
                 return;
               }
               onStepTapped(index);

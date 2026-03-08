@@ -1,24 +1,33 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce/core/errors/failures.dart';
-import 'package:e_commerce/core/repos/orders_repo/orders_repo.dart';
-import 'package:e_commerce/core/services/database_service.dart';
-import 'package:e_commerce/features/checkout/data/models/order_model.dart';
-import 'package:e_commerce/features/checkout/domain/entities/order_input_entity.dart';
+import '../../../features/checkout/data/models/order_model.dart';
+import '../../../features/checkout/domain/entities/order_input_entity.dart';
+import '../../errors/failures.dart';
+import '../../services/database_service.dart';
+import 'orders_repo.dart';
 
 class OrdersRepoImpl implements OrdersRepo {
-  final DatabaseService databaseService;
-  OrdersRepoImpl({required this.databaseService});
+  final DatabaseService dataBaseService;
+
+  OrdersRepoImpl({required this.dataBaseService});
 
   @override
-  Future<Either<Failure, void>> addOrder(
-      {required OrderInputEntity entity}) async {
+  Future<Either<Failure, void>> addOrder({required OrderInputEntity entity}) async {
     try {
-      await databaseService.addData(
-          path: "Order",
-          documentId: entity.uID,
-          data: OrderModel.fromEntity(entity: entity).toJson());
+      var orderModel = OrderModel.fromEntity(entity);
+      await dataBaseService.addData(
+        path: "Orders",
+        documentId: orderModel.orderId,
+        data: orderModel.toJson(),
+      );
       return const Right(null);
-    } catch (e) {
+    } catch (e, stackTrace) {
+      log(
+        'Error adding order: ${e.toString()}',
+        error: e,
+        stackTrace: stackTrace,
+      );
       return Left(ServerFailure(message: e.toString()));
     }
   }

@@ -33,7 +33,6 @@ void setupGetIt() {
 
 
   getIt.registerSingleton<OrdersRepo>(
-      OrdersRepoImpl(
-          databaseService: getIt<DatabaseService>()));
+      OrdersRepoImpl(dataBaseService: getIt<DatabaseService>()));
 
 }

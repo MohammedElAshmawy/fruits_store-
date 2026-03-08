@@ -18,20 +18,21 @@ class OrderModel {
     required this.paymentMethod,
     required this.orderId,
   });
-  factory OrderModel.fromEntity({required OrderInputEntity entity}) {
+
+  factory OrderModel.fromEntity(OrderInputEntity entity) {
     return OrderModel(
       totalPrice: entity.cartEntity.calculateTotalPrice(),
       uId: entity.uID,
-      shippingAddressModel: ShippingAddressModel.fromEntity(
-          entity: entity.shippingAddressEntity.addressEntity),
-     orderProducts: entity.cartEntity.cartItems
-          .map((e) => OrderProductModel.fromEntity(cartItemEntity: e)).toList(),
-       paymentMethod: entity.payWithCash == true ? 'cash' : 'online',
+      shippingAddressModel: ShippingAddressModel.fromEntity(entity.shippingAddressEntity),
+      orderProducts: entity.cartEntity.cartItems
+          .map((e) => OrderProductModel.fromEntity(cartItemEntity: e))
+          .toList(),
+      paymentMethod: entity.payWithCash == true ? 'cash' : 'online',
       orderId: entity.uID,
     );
   }
 
- toJson(){
+  toJson() {
     return {
       'orderId': orderId,
       'totalPrice': totalPrice,
@@ -42,5 +43,5 @@ class OrderModel {
       'orderProducts': orderProducts.map((e) => e.toJson()).toList(),
       'paymentMethod': paymentMethod,
     };
- }
+  }
 }

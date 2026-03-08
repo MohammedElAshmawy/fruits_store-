@@ -1,13 +1,22 @@
-import 'package:e_commerce/features/checkout/domain/entities/address_entity.dart';
-import 'package:e_commerce/features/home/domain/entities/cart_entity.dart';
-
 class ShippingAddressEntity {
-  final CartEntity cartEntity;
-  bool? payCash;
-  AddressEntity addressEntity=AddressEntity();
+  String? name;
+  String? phone;
+  String? address;
+  String? city;
+  String? email;
+  String? floor;
 
   ShippingAddressEntity({
-    required this.cartEntity,
-    this.payCash
+    this.name,
+    this.phone,
+    this.address,
+    this.floor,
+    this.city,
+    this.email,
   });
+
+  @override
+  String toString() {
+    return '$address $floor $city';
+  }
 }

@@ -21,7 +21,9 @@ class MainViewBodyBlocListener extends StatelessWidget {
         if(state is ProductAdded){
           showSnackBar(context,AppStrings.operationDone);
         }else if (state is ProductRemoved){
-          showSnackBar(context,AppStrings.deleteDone);
+          showSnackBar(
+              isError: false,
+              context,AppStrings.deleteDone);
         }
       },
       child: MainViewBody(currentIndex: currentIndex),
