@@ -12,6 +12,12 @@ class OrderSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var orderEntity = context.read<OrderInputEntity>();
+
+    bool payWithCash = orderEntity.payWithCash ?? true;
+    double subTotal = orderEntity.cartEntity.calculateTotalPrice();
+    double deliveryFee = payWithCash ? 0 : 30;
+
     return PaymentItem(
       title: AppStrings.orderSummary,
       child: Column(
@@ -26,7 +32,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice().toString()} جنيه",
+                "$subTotal جنيه",
                 textAlign: TextAlign.right,
                 style: TextStyles.semiBold16,
               )
@@ -45,7 +51,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                '30 جنية',
+                "$deliveryFee جنيه",
                 textAlign: TextAlign.right,
                 style: TextStyles.regular13.copyWith(
                   color: const Color(0xFF4E5556),
@@ -71,9 +77,7 @@ class OrderSummaryWidget extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                context.read<OrderInputEntity>().payWithCash! ?
-                "${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()} جنيه":
-                "${context.read<OrderInputEntity>().cartEntity.calculateTotalPrice()+30}",
+                "${subTotal + deliveryFee} جنيه",
                 style: TextStyles.bold16,
               )
             ],

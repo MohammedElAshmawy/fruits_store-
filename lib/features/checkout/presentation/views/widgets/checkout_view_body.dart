@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:e_commerce/core/utils/strings.dart';
 import 'package:e_commerce/core/widgets/custom_button.dart';
 import 'package:e_commerce/core/widgets/show_snakbar_error.dart';
 import 'package:e_commerce/features/checkout/domain/entities/order_input_entity.dart';
+import 'package:e_commerce/features/checkout/domain/entities/payment_entities/payment_entity.dart';
 import 'package:e_commerce/features/checkout/presentation/cubits/add_order_cubit.dart';
 import 'package:e_commerce/features/checkout/presentation/views/widgets/step_item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
 import 'checkout_steps_page_view.dart';
 
@@ -27,9 +31,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   void initState() {
     pageController = PageController();
     pageController.addListener(() {
-      setState(() {
-        currentPage = pageController.page!.toInt();
-      });
+      if (pageController.hasClients) {
+        setState(() {
+          currentPage = pageController.page!.round();
+        });
+      }
     });
     super.initState();
   }
@@ -54,6 +60,23 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           StepItemList(
             currentPageIndex: currentPage,
             onStepTapped: (index) {
+              if (index > currentPage) {
+                if (index > currentPage + 1) {
+                  return;
+                }
+                if (currentPage == 0) {
+                  if (context.read<OrderInputEntity>().payWithCash == null) {
+                    showSnackBar(context, AppStrings.chooseWayToPay);
+                    return;
+                  }
+                } else if (currentPage == 1) {
+                  if (!formKey.currentState!.validate()) {
+                    valueNotifier.value = AutovalidateMode.always;
+                    return;
+                  }
+                  formKey.currentState!.save();
+                }
+              }
               pageController.animateToPage(
                 index,
                 duration: const Duration(milliseconds: 300),
@@ -77,8 +100,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               } else if (currentPage == 1) {
                 handleAddressNavigation();
               } else {
-               var orderEntity= context.read<OrderInputEntity>();
-                context.read<AddOrderCubit>().addOrder(entity: orderEntity);
+               paymentProcess(context);
               }
             },
             text: getButtonName(currentPage),
@@ -87,6 +109,36 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void paymentProcess(BuildContext context) {
+    var orderEntity= context.read<OrderInputEntity>();
+     context.read<AddOrderCubit>().addOrder(entity: orderEntity);
+     var paymentEntity=PaymentEntity.fromEntity(orderEntity);
+     log(paymentEntity.toString());
+     Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "",
+        secretKey: "",
+        transactions:  [
+          paymentEntity.toJson()
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          Navigator.pop(context);
+          showSnackBar(context, "Payment Successful", isError: false);
+        },
+        onError: (error) {
+          log(error.toString());
+          showSnackBar(context, "Something went wrong, please try again");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          Navigator.pop(context);
+        },
+      ),
+    ));
   }
 
   void handleAddressNavigation() {

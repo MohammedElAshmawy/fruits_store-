@@ -14,4 +14,16 @@ class OrderInputEntity {
         required this.uID,
       });
 
+
+  double calculateShippingCost() {
+    if (payWithCash!) {
+      return 30;
+    } else {
+      return 0;
+    }
+  }
+
+  double calculateShippingDiscount() {
+    return 0;
+  }
 }
